@@ -1,6 +1,10 @@
 import React, { Component } from  'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import config from '../config';
+
+import BookmarksContext from '../BookmarksContext';
+
 import './AddBookmark.css';
 
 const Required = () => (
@@ -8,9 +12,13 @@ const Required = () => (
 )
 
 class AddBookmark extends Component {
-  static defaultProps = {
-    onAddBookmark: () => {}
+  static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func,
+    }).isRequired,
   };
+
+  static contextType = BookmarksContext;
 
   state = {
     error: null,
@@ -47,9 +55,11 @@ class AddBookmark extends Component {
         url.value = ''
         description.value = ''
         rating.value = ''
-        this.props.onAddBookmark(data)
+        this.context.addBookmark(data)
+        this.props.history.push('/')
       })
       .catch(error => {
+        console.error(error)
         this.setState({ error })
       })
   }

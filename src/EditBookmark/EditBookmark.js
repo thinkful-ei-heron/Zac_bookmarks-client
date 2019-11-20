@@ -115,7 +115,6 @@ class EditBookmark extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { error, title, url, description, rating } = this.state
     return (
       <section className='EditBookmark'>

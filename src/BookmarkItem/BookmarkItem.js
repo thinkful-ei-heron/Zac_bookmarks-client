@@ -20,7 +20,7 @@ function deleteBookmarkRequest(bookmarkId, cb) {
       if (!res.ok) {
         return res.json().then(error => Promise.reject(error))
       }
-      return res.json()
+      // return res.json()
     })
     .then(data => {
       cb(bookmarkId)
@@ -70,7 +70,7 @@ export default function BookmarkItem(props) {
 }
 
 BookmarkItem.defaultProps = {
-  onClickDelete: () => {},
+  onClickDelete: () => {}
 }
 
 BookmarkItem.propTypes = {
@@ -82,5 +82,5 @@ BookmarkItem.propTypes = {
   url: PropTypes.string.isRequired,
   desciption: PropTypes.string,
   rating: PropTypes.number.isRequired,
-  onClickDelete: PropTypes.func,
+  onClickDelete: PropTypes.func
 }

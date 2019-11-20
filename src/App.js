@@ -17,6 +17,9 @@ class App extends Component {
   };
 
   setBookmarks = bookmarks => {
+    bookmarks.sort((a, b) => {
+      return b.id - a.id;
+    })
     this.setState({
       bookmarks,
       error: null,
@@ -37,16 +40,6 @@ class App extends Component {
       bookmarks: newBookmarks
     })
   }
-
-  // onClickDelete = (id) => {
-  //   fetch(`${config.API_ENDPOINT}/${id}`,
-  //     {
-  //       method: 'DELETE',
-  //       headers: { 'Authorization': `Bearer ${config.API_KEY}`}
-  //     }).then(this.setState({
-  //       bookmarks: this.state.bookmarks.filter(bookmark => bookmark.id !== id)
-  //     }))
-  // }
 
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
